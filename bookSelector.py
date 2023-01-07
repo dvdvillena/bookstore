@@ -4,7 +4,7 @@
 #     bookSelector.py - Selector and maintenance options for books
 #
 ##############################################################################
-# Copyright (c) 2022 David Villena
+# Copyright (c) 2022, 2023 David Villena
 # All rights reserved.
 # Licensed under the New BSD License
 # (http://www.freebsd.org/copyright/freebsd-license.html)
