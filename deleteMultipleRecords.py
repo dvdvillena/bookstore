@@ -218,7 +218,6 @@ class DeleteMultipleRecordsForm(npyscreen.FormBaseNew):
                 bs.notify_OK("\n     Nothing was deleted.\n", "Message")
             self.exitDeleteMultipleRecords()
         else:
-            print("4343")
             if self.deleteSwitches.value[0] == 1:
                 self.table = "book"
             elif self.deleteSwitches.value[0] == 2:
