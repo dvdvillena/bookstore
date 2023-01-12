@@ -2175,7 +2175,7 @@ class Chooser(MyAutocomplete):
             return
 
         try:
-            self.value = self.parent.append_value_to_list(widget=self, chosen_value=chosen_value)
+            self.value = self.parent.append_value_to_enum(widget=self, chosen_value=chosen_value)
         except AttributeError:
             self.value = self.values[chosen_value]
 
@@ -2326,7 +2326,9 @@ class MyPopup(fmForm.Form):
                     multiline.cursor_line = index
                     self.shortcut = ""
                 except ValueError:
-                    index = 0
+                    pass
+        except IndexError:  # empty values list
+            pass
 
 
 class MyPopupWide(MyPopup):

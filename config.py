@@ -53,9 +53,13 @@ if program_version != "":   # it's a git repository
         print("\n" + pname + ": " + str(e) ,"Error")
         sys.exit()                
 else:   # it's not a git repository, so we read from the json file   
-    with open(filename) as json_file:
-        data = json.load(json_file)
-        program_version = data['program'][0]['version']
+    try:
+        with open(filename) as json_file:
+            data = json.load(json_file)
+            program_version = data['program'][0]['version']
+    except FileNotFoundError:
+        print("\n " + pname + ": " + filename + " was not found.\n")
+        sys.exit()                
 
 parentApp = None        # It's the npyscreen.NPSAppManaged in memory
 conn = None             # DB Connection

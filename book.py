@@ -1119,7 +1119,7 @@ class BookForm(npyscreen.FormBaseNew):
         return tmp_window
 
     def more_than_one_item(self, widget=None, field_val=None):
-        "Hooked from bs.MyAutocomplete.get_choice()"
+        "Hooked from bs.MyAutocomplete.get_choice(). Returns None when it's an enum field with more than one value."
         field_val = field_val
         if widget.name == "Warehouses:" :       # it's an enum field and...
             if len(field_val.split(",")) > 1:   # ...there's more than one item in the enum field, so...
@@ -1138,8 +1138,8 @@ class BookForm(npyscreen.FormBaseNew):
                         widget_value = found_value
         return widget_value
         
-    def append_value_to_list(self, widget=None, chosen_value=None):
-        "Hooked from bs.Chooser.auto_complete()"
+    def append_value_to_enum(self, widget=None, chosen_value=None):
+        "Hooked from bs.Chooser.auto_complete(). Append a chosen value to an enum field."
         value = widget.value
         chosen_value = chosen_value
         if widget.name == "Warehouses:":    # it's an enum field and...
@@ -1151,10 +1151,11 @@ class BookForm(npyscreen.FormBaseNew):
                     return value
         if chosen_value == -1:      # no values on the list and CR pressed
             value = ""   
-        elif chosen_value == 0:     # no values on the list and TAB pressed
-            value = ""
         else:
-            value = widget.values[chosen_value]
+            if len(widget.values) > 0:
+                value = widget.values[chosen_value]
+            else:   # empty values list
+                value = ""
         return value
 
     def get_parentField(self, widget=None):
