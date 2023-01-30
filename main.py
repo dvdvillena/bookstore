@@ -22,7 +22,7 @@ import sys
 if sys.version_info[0] == 3 and sys.version_info[1] >= 10 :
     pass
 else:
-    print("\n>>> Bookstore: I'm sorry, program only runs on Python 3.10 or later. <<<\n")
+    print("\n>>> " + config.pname + ": I'm sorry, program only runs on Python 3.10 or later. <<<\n")
     sys.exit()
 
 import cProfile
@@ -30,10 +30,10 @@ import os
 import pstats
 import mainMenu
 
-#import colored_traceback
+import colored_traceback
 import npyscreen
 
-#colored_traceback.add_hook(always=True) # error Traceback in colors
+colored_traceback.add_hook(always=True) # error Traceback in colors
 npyscreen.disableColor()                # application color
 
 PROFILING = config.PROFILING

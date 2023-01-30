@@ -37,7 +37,7 @@ FIELD_LIST = ["numeral", "name", "address", "bio", "url"]     # only screen fiel
 DBTABLENAME = "'bookstore.Author'"
 
 helpText =  "Another record selector screen for the authors.\n\n" \
-    "* Although in the SQLite database exists an intermediate table 'book/author', I have not really implemented " \
+    "* Although in the database exists an intermediate table 'book/author', I have not really implemented " \
     "that one book can have more than one author. So, in the book record -> author field, every single " \
     "combination of several authors counts as a different author.\n\n" \
     "* Please excuse my Pythonic sense of humor in the Address field. It has allowed me for some alphabetical " \

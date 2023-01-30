@@ -19,7 +19,6 @@ import npyscreen
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DATEFORMAT = config.dateFormat
 DBTABLENAME = "'bookstore.Publisher'"
 
@@ -415,7 +414,7 @@ class PublisherForm(npyscreen.FormBaseNew):
         conn.isolation_level = None     # free the multiuser lock
         config.fileRow[0] = cur.lastrowid
         bs.notify("\n       Record created", title="Message", form_color='STANDOUT', wrap=True, wide=False)
-        # actualizo config.fileRows:
+        # update config.fileRows:
         new_record = []
         new_record.append(config.fileRow[0])    # id
         new_record.append(int(self.numeralFld.value))

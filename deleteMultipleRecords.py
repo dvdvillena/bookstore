@@ -1,17 +1,21 @@
 #!/usr/bin/python
 # encoding: utf-8
-"""
-    deleteMultipleRecords.py - Delete multiple records (books and intermediate tables)
-
-"""
+##############################################################################
+#     deleteMultipleRecords.py - Delete multiple records (books and intermediate tables)
+#
+##############################################################################
+# Copyright (c) 2022, 2023 David Villena
+# All rights reserved.
+# Licensed under the New BSD License
+# (http://www.freebsd.org/copyright/freebsd-license.html)
+##############################################################################
 
 import curses
 import npyscreen
+from npyscreen import wgwidget as widget
 import config
 import bsWidgets as bs
 import sqlite3
-
-EXITED_DOWN  =  1   # copied from npyscreen
 
 TAB = "\t"
 CR = "\n"
@@ -128,6 +132,7 @@ class DeleteMultipleRecordsForm(npyscreen.FormBaseNew):
         message = "   Do you want to empty the whole database?\n\n"
         if not bs.notify_ok_cancel(message, title="", wrap=True, editw = 1,):
             return False     # to the form
+            
         conn = config.conn
         cur = conn.cursor()
         while True:
@@ -264,8 +269,7 @@ class Mi_MiniButtonPress(npyscreen.MiniButtonPress):
         super(npyscreen.MiniButtonPress, self).__init__(screen, *args, **keywords)
         self.when_pressed_function = when_pressed_function
 
-        # para poder ir con .editw a los diferentes campos en caso de error:
-        self.how_exited = EXITED_DOWN   
+        self.how_exited = widget.EXITED_DOWN   
     
     def set_up_handlers(self):
         super(npyscreen.MiniButtonPress, self).set_up_handlers()

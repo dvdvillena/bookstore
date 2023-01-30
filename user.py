@@ -16,11 +16,11 @@ import sqlite3
 import time
 
 import npyscreen
+from npyscreen import wgwidget as widget
 
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DATEFORMAT = config.dateFormat
 DBTABLENAME = "'bookstore.User'"
 
@@ -56,7 +56,7 @@ class UserForm(npyscreen.FormBaseNew):
         self.formTitleFld=self.add(bs.MyFixedText, name="UserTitle", value=self.formTitle, relx=2, rely=0, editable=False)  # Línea de título de pantalla
         # Form fields
         self.numeralFld=self.add(bs.MyTitleText, name="Numeral:", value="", relx=16, rely=6, begin_entry_at=15, editable=False)
-        self.numeralFld.how_exited = EXITED_DOWN    # for Create mode
+        self.numeralFld.how_exited = widget.EXITED_DOWN    # for Create mode
         self.userFld=self.add(bs.MyTitleText, name="User:", value="", relx=16, rely=8, begin_entry_at=15, editable=False)
         self.usernameFld=self.add(bs.MyTitleText, name="Full name:", value="", relx=16, rely=10, begin_entry_at=15, editable=False)
         self.userlevelFld=self.add(bs.MyTitleText, name="User level:", value="", relx=16, rely=12, begin_entry_at=15, editable=False)
@@ -473,7 +473,7 @@ class UserForm(npyscreen.FormBaseNew):
         conn.isolation_level = None     # free the multiuser lock
         config.fileRow[0] = cur.lastrowid
         bs.notify("\n       Record created", title="Message", form_color='STANDOUT', wrap=True, wide=False)
-        # actualizo config.fileRows:
+        # update config.fileRows:
         new_record = []
         new_record.append(config.fileRow[0])
         new_record.append(int(self.numeralFld.value))
@@ -543,7 +543,7 @@ class UserForm(npyscreen.FormBaseNew):
             self.exitUser(modified=False)
 
     def screenToDBDate(self, screenDate, screenFormat):
-        "Converts a simple screen date to a SQLite DB timestamp"
+        "Converts a simple screen date to a database timestamp"
         if screenDate == "":
             return ""   # non-mandatory dates
         if screenFormat[0] == "d":

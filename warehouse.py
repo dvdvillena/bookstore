@@ -19,7 +19,6 @@ import npyscreen
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DATEFORMAT = config.dateFormat
 DBTABLENAME = "'bookstore.Warehouse'"
 
@@ -265,6 +264,7 @@ class WarehouseForm(npyscreen.FormBaseNew):
 
     def delete_warehouse(self):
         "Button based Delete function for D=Delete."
+
         conn = config.conn
         cur = conn.cursor()
         id = config.fileRow[0]
@@ -382,6 +382,7 @@ class WarehouseForm(npyscreen.FormBaseNew):
 
     def save_created_warehouse(self):
         "Button based Save function for C=Create."
+
         conn = config.conn
         cur = conn.cursor()
         sqlQuery = "INSERT INTO " + DBTABLENAME + " (numeral,code,address,phone) VALUES (?,?,?,?)"
@@ -391,7 +392,7 @@ class WarehouseForm(npyscreen.FormBaseNew):
         conn.isolation_level = None     # free the multiuser lock
         config.fileRow[0] = cur.lastrowid
         bs.notify("\n       Record created", title="Message", form_color='STANDOUT', wrap=True, wide=False)
-        # actualizo config.fileRows:
+        # update config.fileRows:
         new_record = []
         new_record.append(config.fileRow[0])    # id
         new_record.append(int(self.numeralFld.value))
@@ -410,7 +411,7 @@ class WarehouseForm(npyscreen.FormBaseNew):
             values = (self.numeralFld.value, self.bu_numeral)
             cur.execute(sqlQuery, values)
             config.conn.commit()
-        # Update warehouse record
+        # Update the warehouse record
         cur = config.conn.cursor()
         sqlQuery = "UPDATE " + DBTABLENAME + " SET numeral=?, code=?, address=?, phone=? WHERE id=?"
         values = (self.numeralFld.value, self.codeFld.value, self.addressFld.value, self.phoneFld.value, config.fileRow[0])

@@ -35,10 +35,10 @@ import publisherSelector
 import user
 import userSelector
 import utilities
-import dbIntegrityCheck
-import deleteMultipleRecords
 import warehouse
 import warehouseSelector
+import dbIntegrityCheck
+import deleteMultipleRecords
 from config import SCREENWIDTH as WIDTH
 
 AUTHENTICATE = config.AUTHENTICATE

@@ -15,11 +15,11 @@ import curses
 import sys
 
 import npyscreen
+from npyscreen import wgwidget as widget
 
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DBTABLENAME = "'bookstore.User'"
 DATETIMEFORMAT = config.dateTimeFormat
 global form
@@ -59,7 +59,7 @@ class ID_Form(npyscreen.FormBaseNew):
         pname, version = config.pname, config.program_version
         self.formTitle = pname + " " + version + " - Authentication "
         self.title=self.add(npyscreen.FixedText, name="UserIDTitle", value=self.formTitle, relx=2, rely=0, editable=False)  # Línea de título de pantalla
-        self.title.how_exited = EXITED_DOWN    # for cursor positioning
+        self.title.how_exited = widget.EXITED_DOWN    # for cursor positioning
         # Form fields
         self.userFld=self.add(bs.MyTitleText, name="User:", value="", relx=27, rely=8, begin_entry_at=12, editable=True)
         self.passwordFld=self.add(npyscreen.TitlePassword, name="Password:", value="", relx=27, rely=10, begin_entry_at=12, editable=False)

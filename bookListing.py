@@ -25,7 +25,6 @@ from npyscreen import fmForm, wgmultiline
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 REMEMBER_FILTERS = config.REMEMBER_FILTERS  # remember the last listing filter subset
 
 TAB = chr(curses.ascii.TAB)
@@ -37,7 +36,7 @@ if config.system_release == "10":   LF = ''     # Windows 8.1 notepad program ne
 
 helpText = "A listing utility for the book database.\n\n\
 * Searching is SQL LIKE-based. Filter fields must not be empty. First items in the filters must be ORs (|), then the NOTs (!=).\n\n\
-* A text program will open the report and wait for you to close it to return to the bookstore. \
+* A text program will open the report and wait for you to close it to return to the program. \
 If config.SAVE_REPORTS=False, automatically deletes the reports after created in the /Reports folder.\n\n\
 * Filter syntax allows for:\n\n\
 %ab% | %cd%  -> (book_title LIKE '%ab%' OR book_title LIKE '%cd%')\n\n\

@@ -1,16 +1,21 @@
 #!/usr/bin/python
 # encoding: utf-8
-"""
-    dbIntegrityCheck.py - Database Integrity Check
+##############################################################################
+#     dbIntegrityCheck.py - Database Integrity Check
+#
+##############################################################################
+# Copyright (c) 2022, 2023 David Villena
+# All rights reserved.
+# Licensed under the New BSD License
+# (http://www.freebsd.org/copyright/freebsd-license.html)
+##############################################################################
 
-"""
 
 import curses
 import npyscreen
+from npyscreen import wgwidget as widget
 import config
 import bsWidgets as bs
-
-EXITED_DOWN  =  1   # copied from npyscreen
 
 TAB = "\t"
 CR = "\n"
@@ -64,7 +69,6 @@ class DBintegrityCheckForm(npyscreen.FormBaseNew):
 
     def CheckDatabasebtn_function(self):
         "Check Database button function."
-
         self.checkIntegrity()
 
     def Cancelbtn_function(self):
@@ -248,8 +252,7 @@ class Mi_MiniButtonPress(npyscreen.MiniButtonPress):
         super(npyscreen.MiniButtonPress, self).__init__(screen, *args, **keywords)
         self.when_pressed_function = when_pressed_function
 
-        # para poder ir con .editw a los diferentes campos en caso de error:
-        self.how_exited = EXITED_DOWN   
+        self.how_exited = widget.EXITED_DOWN   
     
     def set_up_handlers(self):
         super(npyscreen.MiniButtonPress, self).set_up_handlers()

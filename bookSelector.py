@@ -401,7 +401,7 @@ class BookSelectForm(npyscreen.FormBaseNew):
                 config.fileRow.append(self.get_publisher_name(filerow[7]))   # publisher
                 config.fileRow.append(filerow[8])   # creation_date
                 config.fileRow.append(filerow[9])   # genre
-                config.fileRow.append(filerow[10])   # cover_type
+                config.fileRow.append(filerow[10])  # cover_type
                 # rounding of price decimals
                 price = filerow[11]
                 ctx = decimal.getcontext()
@@ -417,6 +417,8 @@ class BookSelectForm(npyscreen.FormBaseNew):
                     self.grid.ensure_cursor_on_display_up(None)
                 return True
             config.screenRow += 1
+        bs.notify("\n        Record not found", form_color='STANDOUT', wrap=True, wide=False)
+        time.sleep(0.6)     # let it be seen
         return False    # not found
 
     def exitBookSelector(self):

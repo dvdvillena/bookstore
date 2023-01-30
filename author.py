@@ -19,7 +19,6 @@ import npyscreen
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DATEFORMAT = config.dateFormat
 DBTABLENAME = "'bookstore.Author'"
 
@@ -283,6 +282,8 @@ class AuthorForm(npyscreen.FormBaseNew):
         conn = config.conn
         cur = conn.cursor()
         id = config.fileRow[0]
+
+        # Delete author record
         sqlQuery = "DELETE FROM " + DBTABLENAME + " WHERE id = " + str(id)
         cur.execute(sqlQuery)
         conn.commit()
@@ -415,6 +416,7 @@ class AuthorForm(npyscreen.FormBaseNew):
 
     def save_created_author(self):
         "Button based Save function for C=Create."
+
         conn = config.conn
         cur = conn.cursor()
         sqlQuery = "INSERT INTO " + DBTABLENAME + " (numeral,name,address,bio,url) VALUES (?,?,?,?,?)"
@@ -424,7 +426,8 @@ class AuthorForm(npyscreen.FormBaseNew):
         conn.isolation_level = None     # free the multiuser lock
         config.fileRow[0] = cur.lastrowid
         bs.notify("\n       Record created", title="Message", form_color='STANDOUT', wrap=True, wide=False)
-        # actualizo config.fileRows:
+
+        # update config.fileRows:
         new_record = []
         new_record.append(config.fileRow[0])    # id
         new_record.append(int(self.numeralFld.value))
@@ -438,6 +441,7 @@ class AuthorForm(npyscreen.FormBaseNew):
     def save_updated_author(self):
         "Button based Save function for U=Update."
 
+        conn = config.conn
         cur = config.conn.cursor()
 
         # Change author_num in book_author records:
@@ -445,13 +449,13 @@ class AuthorForm(npyscreen.FormBaseNew):
             sqlQuery = "UPDATE 'bookstore.book_author' SET author_num=? WHERE author_num=?"
             values = (self.numeralFld.value, self.bu_numeral)
             cur.execute(sqlQuery, values)
-            config.conn.commit()
+            conn.commit()
 
         sqlQuery = "UPDATE " + DBTABLENAME + " SET numeral=?, name=?, address=?, bio=?, url=? WHERE id=?"
         values = (self.numeralFld.value, self.nameFld.value, self.addressFld.value, self.bioFld.value, self.urlFld.value, config.fileRow[0])
         try:
             cur.execute(sqlQuery, values)
-            config.conn.commit()
+            conn.commit()
             bs.notify("\n       Record saved", title="Message", form_color='STANDOUT', wrap=True, wide=False)
         except sqlite3.IntegrityError:
             bs.notify_OK("\n     Numeral or name of author already exists. ", "Message")

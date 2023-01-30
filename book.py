@@ -23,7 +23,6 @@ import npyscreen
 import bsWidgets as bs
 import config
 
-EXITED_DOWN  =  1   # copied from npyscreen
 DATEFORMAT = config.dateFormat
 DBTABLENAME = "'bookstore.book'"
 
@@ -543,6 +542,7 @@ class BookForm(npyscreen.FormBaseNew):
 
     def delete_book(self):
         "Button based Delete function for D=Delete."
+
         conn = config.conn
         cur = conn.cursor()
         id = config.fileRow[0]
@@ -1005,7 +1005,7 @@ class BookForm(npyscreen.FormBaseNew):
             self.exitBook(modified=False)
 
     def screenToDBDate(self, screenDate, screenFormat):
-        "Converts a simple screen date to a SQLite DB timestamp"
+        "Converts a simple screen date to a DB timestamp"
         if screenDate == "":
             return ""   # non-mandatory dates
         if screenFormat[0] == "d":

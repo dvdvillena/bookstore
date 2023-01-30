@@ -21,6 +21,7 @@ from npyscreen import fmForm
 from npyscreen import wggrid as grid
 from npyscreen import wgmultiline as multiline
 from npyscreen import wgtextbox as textbox
+from npyscreen import wgwidget as widget
 
 import config
 #import inspect
@@ -28,7 +29,6 @@ from config import SCREENWIDTH as WIDTH
 
 ALLOW_NEW_INPUT = True
 EXITED_UP    = -1
-EXITED_DOWN  = 1
 RAISEERROR   = 'RAISEERROR'
 EXITED_ESCAPE= 127
 
@@ -103,7 +103,7 @@ class MyFixedText(textbox.FixedText):
     def __init__(self, screen, value='', highlight_color='CURSOR', highlight_whole_widget=False, invert_highlight_color=True, **keywords):
         super().__init__(screen, value, highlight_color, highlight_whole_widget, invert_highlight_color, **keywords)
 
-        self.how_exited = EXITED_DOWN   # for editw = n
+        self.how_exited = widget.EXITED_DOWN   # for editw = n
 
 
 class MyTextfield(textbox.TextfieldBase):
@@ -507,7 +507,7 @@ class MyTextfield(textbox.TextfieldBase):
         if not self._test_safe_to_exit():
             return False
         self.editing = False
-        self.how_exited = EXITED_DOWN
+        self.how_exited = widget.EXITED_DOWN
         try:
             self.parent.widget_was_exited()  # for bookListing.py
         except AttributeError:
@@ -639,7 +639,7 @@ class MyTitleText(npyscreen.TitleText):
         # goes to class TitleText->Widget :
         super().__init__(screen, begin_entry_at, field_width, value, use_two_lines, hidden, labelColor, \
                                                         allow_override_begin_entry_at, **keywords)
-        self.how_exited = EXITED_DOWN   # for editw = n
+        self.how_exited = widget.EXITED_DOWN   # for editw = n
     
     def set_name(self, name):
         "To change the label/name of the text field in real time."
@@ -1335,7 +1335,7 @@ class MyTitleYear(npyscreen.TitleText):
         # goes to class TitleText->Widget :
         super().__init__(screen, begin_entry_at, field_width, value, use_two_lines, hidden, labelColor, \
                                                         allow_override_begin_entry_at, **keywords)
-        self.how_exited = EXITED_DOWN   # for editw = n
+        self.how_exited = widget.EXITED_DOWN   # for editw = n
 
 
 class MoneyField(MyTextfield):
@@ -1445,7 +1445,7 @@ class MyTitleMoney(npyscreen.TitleText):
         # goes to class TitleText->Widget :
         super().__init__(screen, begin_entry_at, field_width, value, use_two_lines, hidden, labelColor, \
                                                         allow_override_begin_entry_at, **keywords)
-        self.how_exited = EXITED_DOWN   # for editw = n
+        self.how_exited = widget.EXITED_DOWN   # for editw = n
 
 
 class MyMultiLineEdit(npyscreen.MultiLineEdit):
@@ -1453,7 +1453,7 @@ class MyMultiLineEdit(npyscreen.MultiLineEdit):
     def __init__(self, screen, autowrap=True, slow_scroll=True, scroll_exit=True, value=None, **keywords):
         super().__init__(screen, **keywords)    # to MultiLineEdit
 
-        self.how_exited = EXITED_DOWN   # for editw = n
+        self.how_exited = widget.EXITED_DOWN   # for editw = n
 
     def filter_char(self, char):
         "Filters some keys for the terminal"
@@ -2017,7 +2017,7 @@ class MyAutocomplete(textbox.Textfield):
         if not self._test_safe_to_exit():
             return False
         self.editing = False
-        self.how_exited = EXITED_DOWN
+        self.how_exited = widget.EXITED_DOWN
 
     def h_cursor_left(self, input):
         if self.cursor_position > 0:
@@ -2123,6 +2123,7 @@ class MyAutocomplete(textbox.Textfield):
                 if len(self.value) > self.maximum_string_length:
                     self.value = self.value[:self.maximum_string_length]
                     # No literal added here.
+
             self.update(clear=True)
 
     def find_value_literal(self, value):
@@ -2459,7 +2460,7 @@ class MyMiniButtonPress(npyscreen.MiniButtonPress):
         self.when_pressed_function = when_pressed_function
 
         # to get to the different fields with .editw, when error occurs:
-        self.how_exited = EXITED_DOWN   # self.find_next_editable
+        self.how_exited = widget.EXITED_DOWN   # self.find_next_editable
     
     def set_up_handlers(self):
         super(npyscreen.MiniButtonPress, self).set_up_handlers()    # goes to class _ToggleControl
@@ -2517,7 +2518,7 @@ class MySelectOne(multiline.MultiLine):
         if not self._test_safe_to_exit():
             return False
         self.editing = False
-        self.how_exited = EXITED_DOWN
+        self.how_exited = widget.EXITED_DOWN
 
         if "DeleteMultipleRecordsForm" in self.parent.name:     # for deleteMultipleRecords.py
             if self.value[0] == 0:  # "Empty the database"
