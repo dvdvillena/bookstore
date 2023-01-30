@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 ##############################################################################
-#     author.py - Author record form
+#     author.py - Author record form 
 #
 ##############################################################################
 # Copyright (c) 2022, 2023 David Villena
