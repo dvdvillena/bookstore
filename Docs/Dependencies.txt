@@ -1,0 +1,19 @@
+Dependencies - bookstore - 03-02-24
+===================================
+
+Dependencies on Windows 10 + Python 3.11.6:
+
+	pip install colored-traceback
+	pip install npyscreen
+	pip install windows-curses (para curses)
+	pip install numpy
+	python -m pip install .\PyICU-2.12-cp311-cp311-win_amd64.whl	<-- Download wheel from https://github.com/cgohlke/pyicu-build/releases
+------------------------------------------------------------
+
+Dependencies on Ubuntu 22.04 + Python 3.10.12:
+
+	pip install colored-traceback
+	pip install npyscreen
+	pip install numpy
+	sudo apt install libicu-dev python3-icu pkg-config	            <-- For ICU
+------------------------------------------------------------

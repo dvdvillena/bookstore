@@ -166,6 +166,10 @@ class MyTextfield(textbox.TextfieldBase):
                     pass    # go on
                 else:
                     char = False
+            case ( 384 ):       # < key
+                char = 60
+            case ( 448 ):       # > key
+                char = 62
         return char
 
     def _get_ch(self):

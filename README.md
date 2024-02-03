@@ -8,7 +8,7 @@ The application is limited to be a home librarian, not a commercial book store s
 
 It does not run on Python 2, I'm sorry, it is developed from scratch on Python 3.10, on Windows 10. State-of-the-Art under the hood. The sample SQLite database is version 3.35.5. The program runs on the Command Prompt on Win10, and it is by default limited to a monochrome classical size of 80 x 25 characters, in part, to enforce resource frugality and, in part, by sheer PC-era nostalgia. Note that you can write texts of 80 columns on the screen, but the "editable" widgets can only use 79. The npyscreen library I used is the last available version 4.10.5, and the original widgets have been inherited/overridden onto my own ones to allow for the new functionalities and also for localization purposes (latin and accented characters).
 
-The program also works fine on my Manjaro 22.0 Xfce linux. In fact, python runs much faster on Linux than on Windows when generating 100,000's of test records.
+The program also works fine on my Ubuntu Desktop 22.04 linux. In fact, python runs much faster on Linux than on Windows when generating 100,000's of test records.
 
 For the book listings, the program builds text files and displays them using a simple GUI text editor, but it can easily be downgraded again to a pure character program for non-GUI linuxes, using a terminal-based text editor like Vim.
 
@@ -22,7 +22,7 @@ To run the *bookstore*, simply:
 ==============================
                             
 1) Place all the files of the release into a folder respecting the folder tree.
-2) Open a Windows/Linux Terminal window of 81 x 25 characters (there's an extra position on the right). It will work fine on a maximized terminal window as well, but the       actual used space will remain at 80 x 25. 
+2) Open a Windows/Linux Terminal window of 81 x 25 characters (there's an extra position on the right). It will work fine on a maximized terminal window as well, but the actual used space will remain at 80 x 25. 
 3) Change directory ("cd") to the folder where the bookstore python modules are located.
 4) Run "python3 main.py". Or change "python3" for your own python 3 executable synonym.
 ---------------------------------------------------------------------------------------------------------------
